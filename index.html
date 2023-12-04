@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Расклады Таро</title>
     <style>
+        
         .qobl{
             border-radius: 20px;
             background: rgb(255,250,228);
@@ -1325,9 +1326,26 @@
         });
 
         $(document).on("click", ".quest", function(){
-            id = $(this).data("id");
-            $.session.set("t1000q", id);
-            location.assign("/taro/gadanie/otvet/");
+            var id = $(this).data("id");
+
+            // Отправка callback запроса в бота
+            $.ajax({
+                url: 'https://api.telegram.org/bot6836002678:AAFcYZbKXIamEPv8T1KKYemKLO_08q3VpsE/answerCallbackQuery',
+                type: 'POST',
+                data: {
+                    callback_query_id: 'button_5',
+                    text: id
+                },
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+
+            // Закрытие веб-приложения
+            window.close();
         });
 
         $(document).on("click", ".sbtanch", function(){
