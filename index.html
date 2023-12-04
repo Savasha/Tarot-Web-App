@@ -4,312 +4,146 @@
     <meta charset="UTF-8">
     <title>Расклады Таро</title>
     <style>
-	.socmain{
-		margin: 0 -20px -20px;
-	}
-	.topimgbg{
-		border-radius: 10px;
-	    background-image: url(img/bg.jpeg);
-	    background-size: cover;
-	    margin-bottom: 60px;
-	    padding: 20px 20px 10px 20px;
-		position:relative;
-		background-position:bottom center;
-	}
-	.topimgbg h1{
-		color:#fff !important;
-	}
-	.topimgbg h2{
-		color:#191919 !important;
-		font-size: 14px !important;
-		line-height: 18px !important;
-	    padding: 5px 30px !important;
-	    display: inline-block;
-	    border-radius: 15px;
-		background: rgb(225,121,221);
-		background: linear-gradient(140deg, rgba(225,121,221,1) 0%, rgba(109,160,245,1) 100%);
-	}
-	.topimgbg h2 span{
-		font-size: 18px !important;
-		vertical-align: middle;
-	}
-	.card1, .card2{
-		border-radius: 15px;
-		border:3px solid #fff;
-	}
-	.topcards{
-		padding-top:20px;
-		width:70%;
-		margin:0 auto;
-		position:relative;
-	}
-	.topcards .card1, .topcards .card2{
-		width:30%;
-		position: relative;
-		z-index:1;
-	}
-	.topcards .card2{
-		float:right;
-	}
-	.topcards .cardmain{
-		position:absolute;
-		top:-20px;
-		width:48%;
-		left:27%;
-		z-index:2;
-	}
-	.topcards .ten{
-		position: absolute;
-	    bottom: -30%;
-	    z-index: 10;
-	    width: 54%;
-	    left: 23%;
-	}
+        .qobl{
+            border-radius: 20px;
+            background: rgb(255,250,228);
+            background: radial-gradient(circle, rgba(255,250,228,1) 0%, rgba(248,234,211,1) 100%);
+            padding:20px;
+            box-shadow: 0px -5px 15px 0px rgba(0,0,0,0.6);
+            margin-top: -35px;
+            overflow:hidden;
+        }
+        .qlst{
+            border-radius: 20px;
+            border: 3px solid #e1ccb8;
+            padding-bottom:15px;
+        }
+        .qobl.open .qlst{
+            background-image: url(img/sun.png);
+            background-size: 30% auto;
+            background-position: right 150px;
+            background-repeat: no-repeat;
+            padding-bottom:25px;
+        }
+        .qlst .ttl{
+            display: flex;
+            align-items: center;
+            margin:10px 0;
+            cursor:pointer;
+        }
+        .qlst .ttl .icon{
+            width:80px;
+            text-align:center;
+        }
+        .qlst .ttl .arr{
+            width:40px;
+            text-align:center;
+            font-size: 24px;
+            text-shadow: 0px 0px 8px #000;
+        }
+        .qlst .ttl .arr img{
+            max-width:100%;
+        }
+        .qlst .ttl .arr img.rev{
+            transform: rotate(180deg);
+        }
+        .qlst .ttl .icon img{
+            width:40px;
+            max-width:90%;
+        }
+        .qlst .ttl .txt{
+            color:#4c4c4c;
+            font-weight:600;
+            font-size:20px;
+            width:calc(100% - 120px);
+        }
+        .qlst .sttl, .qlst .quest{
+            margin-left:80px;
+            margin-bottom:10px;
+            font-size: 18px;
+        }
+        .qlst .sttl{
+            color:#404040;
+            padding: 3px 10px;
+            display: inline-block;
+            border-radius: 5px;
+            background: rgb(141,234,255);
+            background: linear-gradient(140deg, rgba(141,234,255,1) 0%, rgba(25,186,233,1) 100%);
+        }
+        .qlst .sttl:not(:nth-of-type(1)){
+            margin-top:30px;
+        }
+        .qlst .sbtlist{
+            margin-left:20px;
+            margin-top: -10px;
+        }
+        .qlst .sbtlist .sbtanch{
+            cursor:pointer;
+            margin:10px 10px 0 0;
+            display:inline-block;
+            padding:2px 10px;
+            border-radius:15px;
+            border:1px solid #d2bf83;
+            color:#918b7f;
+        }
+        .qlst .sbtlist .sbtanch:hover{
+            background-color:#d2bf83;
+            color:#4f4b43;
+        }
+        .qlst .quest{
+            cursor:pointer;
+            color:#38414a;
+        }
+        .qlst .quest:hover{
+            color:#f655a0;
+        }
+        .qblock{
+            display:none;
+        }
+        .qobl.open .qblock{
+            display:block;
+        }
+        .qlst{
+            border-width:2px;
+        }
+        .qlst .ttl .icon {
+            width: 60px;
+        }
+        .qlst .ttl .icon img{
+            max-width:80%;
+        }
+        .qlst .ttl .txt{
+            font-size:18px;
+            width: calc(100% - 100px);
+        }
+        .qlst .sttl, .qlst .quest {
+            margin-left: 5px;
+            margin-right: 5px;
+            font-size: 16px;
+        }
+        .qlst .sbtlist{
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        .qobl.open .qlst{
+            background-size: 60% auto;
+        }
+        @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-	.qobl{
-		border-radius: 20px;
-		background: rgb(255,250,228);
-		background: radial-gradient(circle, rgba(255,250,228,1) 0%, rgba(248,234,211,1) 100%);
-		padding:20px;
-		box-shadow: 0px -5px 15px 0px rgba(0,0,0,0.6);
-		margin-top: -35px;
-		overflow:hidden;
-	}
-	.qlst{
-		border-radius: 20px;
-	    border: 3px solid #e1ccb8;
-		padding-bottom:15px;
-	}
-	.qobl.open .qlst{
-		background-image: url(img/sun.png);
-	    background-size: 30% auto;
-	    background-position: right 150px;
-	    background-repeat: no-repeat;
-		padding-bottom:25px;
-	}
-	.qlst .ttl{
-		display: flex;
-	    align-items: center;
-		margin:10px 0;
-		cursor:pointer;
-	}
-	.qlst .ttl .icon{
-		width:80px;
-		text-align:center;
-	}
-	.qlst .ttl .arr{
-		width:40px;
-		text-align:center;
-		font-size: 24px;
-		text-shadow: 0px 0px 8px #000;
-	}
-	.qlst .ttl .arr img{
-		max-width:100%;
-	}
-	.qlst .ttl .arr img.rev{
-		transform: rotate(180deg);
-	}
-	.qlst .ttl .icon img{
-		width:40px;
-		max-width:90%;
-	}
-	.qlst .ttl .txt{
-		color:#4c4c4c;
-		font-weight:600;
-		font-size:20px;
-		width:calc(100% - 120px);
-	}
-	.qlst .sttl, .qlst .quest{
-		margin-left:80px;
-		margin-bottom:10px;
-		font-size: 18px;
-	}
-	.qlst .sttl{
-		color:#404040;
-	    padding: 3px 10px;
-	    display: inline-block;
-	    border-radius: 5px;
-		background: rgb(141,234,255);
-		background: linear-gradient(140deg, rgba(141,234,255,1) 0%, rgba(25,186,233,1) 100%);
-	}
-	.qlst .sttl:not(:nth-of-type(1)){
-		margin-top:30px;
-	}
-	.qlst .sbtlist{
-		margin-left:20px;
-		margin-top: -10px;
-	}
-	.qlst .sbtlist .sbtanch{
-		cursor:pointer;
-		margin:10px 10px 0 0;
-		display:inline-block;
-		padding:2px 10px;
-		border-radius:15px;
-		border:1px solid #d2bf83;
-		color:#918b7f;
-	}
-	.qlst .sbtlist .sbtanch:hover{
-		background-color:#d2bf83;
-		color:#4f4b43;
-	}
-	.qlst .quest{
-		cursor:pointer;
-		color:#38414a;
-	}
-	.qlst .quest:hover{
-		color:#f655a0;
-	}
-	.qblock{
-		display:none;
-	}
-	.qobl.open .qblock{
-		display:block;
-	}
 
-	.gadalldaily .taro1000{
-		background: rgb(254,129,252);
-		background: linear-gradient(90deg, rgba(254,129,252,1) 0%, rgba(142,114,255,1) 100%);
-		margin: 1em auto;
-		box-shadow: 0px 12px 16px 0px rgba(6, 161, 204, 0.3);
-		font-size:22px;
-		font-weight:500;
-	}
-	.gadalldaily .taro1000:hover{
-		box-shadow: 0px 0px 35px 4px rgba(85, 171, 252, 0.6) !important;
-	}
+        .bot-link {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 20px;
+            font-family: 'Roboto', sans-serif;
+            background-color: #e4f0ff;
+            color: black;
+            text-decoration: none;
+            margin: 0 -20px -20px;
+        }
 
-	.sform{
-		margin:1em 0;
-		position:relative;
-	}
-	.sform .skey{
-		height: 40px;
-	    line-height: 40px;
-	    padding: 0 20px;
-	    box-sizing: border-box;
-	    border-radius: 20px;
-	    border: none;
-	    margin-top: 1em;
-	    width: 100%;
-	    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
-		color:#909dc4;
-		font-size:18px;
-	}
-	.sform .skey.res{
-		border-radius: 20px 20px 0 0;
-	}
-	.sform .butsearch{
-		width: 40px;
-	    height: 40px;
-	    background: url(/img/sonnik/search.svg) center / 30px no-repeat;
-	    position: absolute;
-	    bottom: 0;
-	    right: 0;
-	    display: block;
-	    cursor: pointer;
-	}
-	.sform .ajaxres{
-		width:100%;
-		position: absolute;
-		top: 100%;
-		left: 0;
-		border-radius: 0 0 20px 20px;
-		background-color: #fff;
-		z-index: 50;
-		box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.4);
-		display:none;
-		paddign:5px 0;
-	}
-	.sform .ajaxres .sres, .sform .ajaxres .sresclose{
-		padding:5px 20px;
-		box-sizing: border-box;
-		cursor:pointer;
-	}
-	.sform .ajaxres .sresclose{
-		text-align:right;
-		color:#918b7f;
-	}
-	.sform .ajaxres .sres:hover, .sform .ajaxres .sresclose:hover{
-		color:#f655a0;
-	}
-
-	.divination_bord{
-		background: rgb(255,250,228);
-		background: radial-gradient(circle, rgba(255,250,228,1) 0%, rgba(248,234,211,1) 100%);
-		border-radius: 10px;
-	    -webkit-box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.2);
-	    -moz-box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.2);
-	    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.2);
-	    margin-bottom: 10px;
-	    margin-top: 5px;
-	}
-	.divination{
-		margin:0;
-		-webkit-box-shadow:none;
-		-moz-box-shadow:none;
-		box-shadow:none;
-	}
-	.divination_bord .entry-social{
-		margin-top:10px;
-		border-radius:0 0 10px 10px;
-		overflow: hidden;
-		clear: both;
-	}
-
-	@media screen and (max-width: 600px) {
-	.topcards{
-		padding-top:80px;
-		text-align: left;
-	}
-	.topcards .cardmain{
-		top:50px;
-	}
-	.topcards .ten{
-		bottom: -25%;
-	}
-	.qlst{
-		border-width:2px;
-	}
-	.topimgbg {
-		text-align:center;
-		padding-bottom:0px;
-		margin-bottom: 60px;
-	}
-	.deck.res .card14{
-		left:-10px;
-	}
-	.topimgbg h2{
-		padding: 5px 15px !important;
-	}
-	}
-
-	@media screen and (max-width: 500px) {
-	.topcards{
-		width: 90%;
-	}
-	.qlst .ttl .icon {
-	    width: 60px;
-	}
-	.qlst .ttl .icon img{
-		max-width:80%;
-	}
-	.qlst .ttl .txt{
-		font-size:18px;
-		width: calc(100% - 100px);
-	}
-	.qlst .sttl, .qlst .quest {
-	    margin-left: 5px;
-	    margin-right: 5px;
-	    font-size: 16px;
-	}
-	.qlst .sbtlist{
-		margin-left: 5px;
-	    margin-right: 5px;
-	}
-	.qobl.open .qlst{
-		background-size: 60% auto;
-	}
-	}
 	</style>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
@@ -398,7 +232,7 @@
                     <div class="quest" data-id="41">Какие у нас общие интересы или ценности?</div>
                     <div class="quest" data-id="42">Как он отреагирует, если я признаюсь в любви?</div>
                     <div class="quest" data-id="43">Не принесут ли проблем наши отношения?</div>
-                    
+
                     <div class="sttl" id="sttl2">Гадание на женщину</div>
                     <div class="quest" data-id="44">Любит ли она меня?</div>
                     <div class="quest" data-id="45">Люблю ли я ее?</div>
@@ -427,7 +261,7 @@
                     <div class="quest" data-id="68">Какой характер у девушки, о которой думаю?</div>
                     <div class="quest" data-id="69">Какие у нас общие интересы или ценности?</div>
                     <div class="quest" data-id="70">Что будет, если я сделаю первый шаг?</div>
-                    
+
                     <div class="sttl" id="sttl3">Свидание</div>
                     <div class="quest" data-id="71">Стоит ли мне идти на свидание?</div>
                     <div class="quest" data-id="72">Что он (она) думает о предстоящем свидании?</div>
@@ -442,7 +276,7 @@
                     <div class="quest" data-id="81">Каковы мои шансы на второе свидание?</div>
                     <div class="quest" data-id="82">Какие сюрпризы или неожиданности могут меня ждать на этом свидании?</div>
                     <div class="quest" data-id="83">Есть ли чего мне опасаться на этом свидании?</div>
-                    
+
                     <div class="sttl" id="sttl4">Поиск любви</div>
                     <div class="quest" data-id="84">Встречу ли я свою настоящую любовь?</div>
                     <div class="quest" data-id="85">Когда я встречу свою любовь?</div>
@@ -459,7 +293,7 @@
                     <div class="quest" data-id="96">Чего мне следует избегать в новых отношениях?</div>
                     <div class="quest" data-id="97">Какие мои качества привлекают противоположный пол?</div>
                     <div class="quest" data-id="98">Какие события или места могут способствовать новым знакомствам?</div>
-                    
+
                     <div class="sttl" id="sttl5">Выбор партнера</div>
                     <div class="quest" data-id="99">Кто будет моим мужем?</div>
                     <div class="quest" data-id="100">Кто будет моей женой?</div>
@@ -467,7 +301,7 @@
                     <div class="quest" data-id="102">С кем из этих двоих я в результате останусь?</div>
                     <div class="quest" data-id="103">Что мне следует знать о своем будущем партнере?</div>
                     <div class="quest" data-id="104">Кому из двоих я сейчас больше нравлюсь?</div>
-                    
+
                     <div class="sttl" id="sttl6">Верность и измена</div>
                     <div class="quest" data-id="105">Есть ли у моего любимого человека кто-то на стороне?</div>
                     <div class="quest" data-id="106">Что может подтолкнуть моего любимого человека к интриге на стороне?</div>
@@ -489,7 +323,7 @@
                     <div class="quest" data-id="122">Есть ли у меня соблазны и искушения в отношении другого человека?</div>
                     <div class="quest" data-id="123">Могу ли я изменить своему партнеру?</div>
                     <div class="quest" data-id="124">Будет ли мой партнер верен мне в будущем?</div>
-                    
+
                     <div class="sttl" id="sttl7">Существующие отношения</div>
                     <div class="quest" data-id="125">Нужно ли мне продолжать эти отношения?</div>
                     <div class="quest" data-id="126">Что мой партнер думает о наших отношениях?</div>
@@ -510,7 +344,7 @@
                     <div class="quest" data-id="141">Каков итог наших отношений?</div>
                     <div class="quest" data-id="142">Когда мы с партнером сможем сделать следующий шаг в наших отношениях (создание семьи, совместное проживание и т.д.)?</div>
                     <div class="quest" data-id="143">Какие советы Таро может дать мне для успешных отношений с партнером?</div>
-                    
+
                     <div class="sttl" id="sttl8">Будущие отношения</div>
                     <div class="quest" data-id="144">Какими будут мои будущие отношения?</div>
                     <div class="quest" data-id="145">Когда я встречу свою вторую половинку?</div>
@@ -524,13 +358,13 @@
                     <div class="quest" data-id="153">Как долго продлятся мои будущие отношения?</div>
                     <div class="quest" data-id="154">Каков итог моих будущих отношений?</div>
                     <div class="quest" data-id="155">Есть ли у меня шанс на счастливые и долгосрочные отношения?</div>
-                    
+
                     <div class="sttl" id="sttl9">Совместимость с партнером</div>
                     <div class="quest" data-id="156">Какие интересы и ценности нас объединяют?</div>
                     <div class="quest" data-id="157">Есть ли у нас различия, которые могут стать причиной конфликтов?</div>
                     <div class="quest" data-id="158">Какие сильные стороны делают наши отношения устойчивыми?</div>
                     <div class="quest" data-id="159">Есть ли у нас общие цели и планы на будущее?</div>
-                    
+
                     <div class="sttl" id="sttl10">Предложение руки и сердца</div>
                     <div class="quest" data-id="160">Принять ли мне это предложение руки и сердца?</div>
                     <div class="quest" data-id="161">Насколько искренен тот, кто делает мне предложение?</div>
@@ -547,7 +381,7 @@
                     <div class="quest" data-id="172">Что делать, если ответ будет отрицательным?</div>
                     <div class="quest" data-id="173">Стоит ли мне быть инициатором предложения?</div>
                     <div class="quest" data-id="174">Стоит ли мне дождаться первого шага от партнера?</div>
-                    
+
                     <div class="sttl" id="sttl11">Брак и семейные отношения</div>
                     <div class="quest" data-id="175">Какой у меня будет муж?</div>
                     <div class="quest" data-id="176">Какая у меня будет жена?</div>
@@ -561,7 +395,7 @@
                     <div class="quest" data-id="184">Какие отношения у меня сложатся с родственниками мужа (жены)?</div>
                     <div class="quest" data-id="185">Понравится ли моим родственникам мой избранник(ца)?</div>
                     <div class="quest" data-id="186">Есть ли неизвестные факты или тайны в семье партнера?</div>
-                    
+
                     <div class="sttl" id="sttl12">Разрыв, расставание, примирение</div>
                     <div class="quest" data-id="187">Что думает партнер о нашем конфликте, разногласии?</div>
                     <div class="quest" data-id="188">Простит ли меня любимый человек?</div>
@@ -575,7 +409,7 @@
                     <div class="quest" data-id="196">Что чувствует мой партнер после расставания?</div>
                     <div class="quest" data-id="197">Совет Таро: как преодолеть кризис в отношениях</div>
                     <div class="quest" data-id="198">Могу ли я что-то изменить в этой ситуации?</div>
-                    
+
                     <div class="sttl" id="sttl13">Привлекательность, интимные отношения</div>
                     <div class="quest" data-id="199">За какие качества в меня можно влюбиться?</div>
                     <div class="quest" data-id="200">Что чувствует мой партнер в интимных моментах?</div>
@@ -587,7 +421,7 @@
                     <div class="quest" data-id="206">Готов ли партнер к близости со мной?</div>
                     <div class="quest" data-id="207">Что партнер ожидает от нашей первой близости?</div>
                     <div class="quest" data-id="208">Есть ли у партнера опыт в интимных отношениях?</div>
-                    
+
                     <div class="sttl" id="sttl14">Отношения на расстоянии</div>
                     <div class="quest" data-id="209">Может ли расстояние разрушить наши отношения?</div>
                     <div class="quest" data-id="210">Стоит ли мне доверять партнеру на расстоянии?</div>
@@ -1471,8 +1305,12 @@
                     <div class="quest" data-id="803">Каких ошибок мне стоит избегать на пути духовного роста?</div>
                 </div>
             </div>
+            <a class="bot-link" href="https://t.me/savasha_vitiate_bot">@savasha_vitiate_bot</a>
+
         </div>
     </div>
+
+
     <script>
         $(document).on("click", ".qlst .ttl", function(){
             id = $(this).data("id");
