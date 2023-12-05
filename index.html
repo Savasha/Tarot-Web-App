@@ -1326,11 +1326,15 @@
 
         $(document).on("click", ".quest", function(){
             var id = $(this).data("id");
-
-            tg.sendData(id)
-
-            tg.close();
+        
+            if (id) {
+                tg.sendData(id)
+                tg.close();
+            } else {
+                console.error('ID is not defined');
+            }
         });
+
 
         $(document).on("click", ".sbtanch", function(){
             var id = $(this).data("id"); // Добавлено ключевое слово var
