@@ -1326,13 +1326,13 @@
 
         $(document).on("click", ".quest", function(){
             var id = $(this).data("id");
-        
-            if (id) {
-                tg.sendData(id)
-                tg.close();
-            } else {
-                console.error('ID is not defined');
+
+            let data ={
+                quest_id: id
             }
+            tg.sendData(JSON.stringify(data));
+
+            tg.close();
         });
 
 
