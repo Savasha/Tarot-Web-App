@@ -147,7 +147,6 @@
 
 	</style>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="block custom ">
@@ -1309,11 +1308,10 @@
 
     </div>
     </div>
-
-
+    <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
     <script>
-        var urlParams = new URLSearchParams(window.location.search);
-        var chat_id = urlParams.get('id');
+        let tg = window.Telegram.WebApp;
+        tg.expand();
 
         $(document).on("click", ".qlst .ttl", function(){
             var id = $(this).data("id"); // Добавлено ключевое слово var
@@ -1329,28 +1327,9 @@
         $(document).on("click", ".quest", function(){
             var id = $(this).data("id");
 
-            console.log('chat_id: ', chat_id); // Заменено двоеточие
+            tg.sendData(id)
 
-            // Отправка callback запроса в бота
-            $.ajax({
-                url: 'https://api.telegram.org/bot6836002678:AAFcYZbKXIamEPv8T1KKYemKLO_08q3VpsE/sendMessage',
-                type: 'POST',
-                data: {
-                    'chat_id': chat_id,
-                    'text': id
-                },
-                success: function(response) {
-                    if (response.ok) {
-                        console.log('Success:', response);
-                    } else {
-                        console.log('Error:', response);
-                    }
-                },
-                error: function(error) { // Добавлен обработчик ошибок
-                    console.log('Error:', error);
-                }
-            });
-
+            tg.close();
         });
 
         $(document).on("click", ".sbtanch", function(){
