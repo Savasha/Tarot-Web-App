@@ -1313,7 +1313,7 @@
 
     <script>
         var urlParams = new URLSearchParams(window.location.search);
-        var callbackQueryId = urlParams.get('id');
+        var chat_id = urlParams.get('id');
 
         $(document).on("click", ".qlst .ttl", function(){
             id = $(this).data("id");
@@ -1336,15 +1336,16 @@
                 url: 'https://api.telegram.org/bot6836002678:AAFcYZbKXIamEPv8T1KKYemKLO_08q3VpsE/answerCallbackQuery',
                 type: 'POST',
                 data: {
-                        callback_query_id: callbackQueryId,
-                    text: id
+                    'chat_id': chat_id,
+                    'text': id
                 },
                 success: function(response) {
-                    console.log(response);
+                    if (response.ok) {
+                        console.log('Success:', response);
+                    } else {
+                        console.log('Error:', response);
+                    }
                 },
-                error: function(error) {
-                    console.log(error);
-                }
             });
 
         });
