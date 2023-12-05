@@ -1316,12 +1316,12 @@
         var chat_id = urlParams.get('id');
 
         $(document).on("click", ".qlst .ttl", function(){
-            id = $(this).data("id");
+            var id = $(this).data("id"); // Добавлено ключевое слово var
             $(this).parents(".qobl").toggleClass("open");
             $(this).find(".fas").toggleClass("fa-chevron-up").toggleClass("fa-chevron-down");
             $(this).find("img").toggleClass("rev");
-            subs = 150;
-            if ($(this).parents(".qobl").find(".sbtlist"))
+            var subs = 150; // Добавлено ключевое слово var
+            if ($(this).parents(".qobl").find(".sbtlist").length) // Исправлено условие
                 subs += $(this).parents(".qobl").find(".sbtlist").outerHeight() + 10;
             $(this).parents(".qlst").css({"background-position":"right " + subs + "px"});
         });
@@ -1329,11 +1329,11 @@
         $(document).on("click", ".quest", function(){
             var id = $(this).data("id");
 
-            console.log('callbackQueryId: ', callbackQueryId);
+            console.log('chat_id: ', chat_id); // Заменено двоеточие
 
             // Отправка callback запроса в бота
             $.ajax({
-                url: 'https://api.telegram.org/bot6836002678:AAFcYZbKXIamEPv8T1KKYemKLO_08q3VpsE/answerCallbackQuery',
+                url: 'https://api.telegram.org/botYOUR_BOT_TOKEN/answerCallbackQuery',
                 type: 'POST',
                 data: {
                     'chat_id': chat_id,
@@ -1346,16 +1346,20 @@
                         console.log('Error:', response);
                     }
                 },
+                error: function(error) { // Добавлен обработчик ошибок
+                    console.log('Error:', error);
+                }
             });
 
         });
 
         $(document).on("click", ".sbtanch", function(){
-            id = $(this).data("id");
+            var id = $(this).data("id"); // Добавлено ключевое слово var
             $('html, body').animate({
                 scrollTop: $('#sttl'+id).offset().top - 60
             }, 300);
         });
+
     </script>
 </body>
 </html>
